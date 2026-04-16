@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres
+
+    container_name: postgres_db
+
+    environment:
+      POSTGRES_USER: instagram
+      POSTGRES_PASSWORD: instagram@123
+      POSTGRES_DB: instagram
+      
+    ports:
+      - "5432:5432"
+    
+    volumes:
+      - postgres_data:/var/lib/postgressql/data
+
+volumes:
+  postgres_data:
