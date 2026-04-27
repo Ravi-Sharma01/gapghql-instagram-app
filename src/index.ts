@@ -1,6 +1,7 @@
 import express from "express";
 import { expressMiddleware } from '@as-integrations/express5'
 import createApolloServer from './graphql/index.js'
+import TokenService from './services/token.js'
 
 async function init() {
   const app = express();
@@ -9,10 +10,18 @@ async function init() {
 
   //start graphql apolloserver
   const apolloGraphqlServer = await createApolloServer();
+  
+  
 
 
 
-  app.use('/graphql', expressMiddleware(apolloGraphqlServer));
+ app.use('/graphql', expressMiddleware(apolloGraphqlServer, {
+    context: async ({ req }) => {
+      const token =  req.headers['token'];
+      const user  =  TokenService.verifyAccessToken(token as string);
+      return{user};
+    },
+  }));
 
 
 

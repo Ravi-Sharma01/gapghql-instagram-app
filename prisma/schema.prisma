@@ -14,10 +14,15 @@ datasource db {
 }
   
 model User {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
   name String
   email String @unique
   imageProfile String? @map("image_profile")
   password String
-  salt String
+  refreshToken String @default("")
+  
+  @@map("User")
+  @@index([email])
+  @@index([name])
 }
+

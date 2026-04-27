@@ -7,6 +7,7 @@ async function createApolloServer() {
         typeDefs:userTypeDefs,
         resolvers:userResolvers,
     });
+    
 
     await gqlServer.start();
     return gqlServer;
