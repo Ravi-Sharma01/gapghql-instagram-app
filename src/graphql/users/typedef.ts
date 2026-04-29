@@ -20,6 +20,8 @@ export const typeDefs = `#graphql
         createUser(name: String!, email: String!, password: String!): String
 
         loginUser(email:String!, password: String!):AuthPayload!
+
+        refreshAccessToken(refreshToken: String!): AuthPayload!
     }
 `
 

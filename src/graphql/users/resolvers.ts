@@ -1,4 +1,8 @@
-import  UserService, {type CreateUserPayload, type LoginUserPayload} from '../../services/user.js'
+import  UserService, {
+    type CreateUserPayload,
+    type LoginUserPayload,
+    type refreshAccessToken
+} from '../../services/user.js'
 
 export const resolvers={
     Query:{
@@ -30,6 +34,16 @@ export const resolvers={
             } catch (error) {
                 throw new Error(error as string);
             }
+        },
+
+        refreshAccessToken: async(_:any, payload:refreshAccessToken)=>{
+            try {
+                const authPayLoad = await UserService.refreshAccesToken(payload);
+                return authPayLoad; 
+            } catch (error) {
+                throw new Error(error as string);
+            }
+
         }
     },
 }

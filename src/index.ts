@@ -1,10 +1,12 @@
 import express from "express";
 import { expressMiddleware } from '@as-integrations/express5'
+import cors from 'cors'
 import createApolloServer from './graphql/index.js'
 import TokenService from './services/token.js'
 
 async function init() {
   const app = express();
+  app.use(cors());
   app.use(express.json());
 
 

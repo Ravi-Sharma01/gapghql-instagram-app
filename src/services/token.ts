@@ -25,9 +25,9 @@ class TokenService {
             return jwt.verify(token, this.JWT_SECRET) as { id: string, email: string };
         } catch (error) {
             if ((error as any).name === "TokenExpiredError") {
-                console.log("Access token expired");
+               throw new Error('token expired or invalid access toekn')
             }
-            console.log("invalid access token");
+            console.log("invalid access token or expired");
             return null;
         }
     }
@@ -37,7 +37,7 @@ class TokenService {
             return jwt.verify(token, this.REFRESH_SECRET_KEY) as { id: string, email: string };
         } catch (error) {
             if ((error as any).name === 'TokenExpiredError') {
-                console.log("refreshToken expired please login again.");
+                throw new Error('token expired or invalid access toekn') 
             }
             console.log('invalid refresh token')
             return null

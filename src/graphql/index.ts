@@ -6,6 +6,7 @@ async function createApolloServer() {
     const gqlServer = new ApolloServer({
         typeDefs:userTypeDefs,
         resolvers:userResolvers,
+        introspection: true,
     });
     
 
